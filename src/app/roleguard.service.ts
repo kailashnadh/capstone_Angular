@@ -21,6 +21,7 @@ export class RoleguardService implements CanActivate{
       !this.auth.isAuthenticated() || 
       tokenPayload.scopes!== expectedRole
     ) {
+      this.auth.logout();
       this.router.navigate(['']);
       return false;
     }
