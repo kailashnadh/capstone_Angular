@@ -41,33 +41,34 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
         path:'AddEmployee',
         component:AddemployeeComponent,
         canActivate:[RoleGuard],
-        data: { 
+        data: {
              expectedRole: 'ROLE_ADMIN'
-        } 
+        }
       }
-      // { 
-      //   path: 'admin', 
-      //   component: AdminComponent, 
-      //   canActivate: [RoleGuard], 
-      //   data: { 
+      //hiiiiiiiiiiiiiiiiiiiiiiii
+      // {
+      //   path: 'admin',
+      //   component: AdminComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
       //     expectedRole: 'ROLE_ADMIN'
-      //   } 
+      //   }
       // },
       // {
-      //   path: 'manager', 
-      //   component: ManagerComponent, 
-      //   canActivate: [RoleGuard], 
-      //   data: { 
+      //   path: 'manager',
+      //   component: ManagerComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
       //     expectedRole: 'ROLE_MANAGER'
-      //   } 
+      //   }
       // },
       // {
-      //   path: 'employee', 
-      //   component: EmployeeComponent, 
-      //   canActivate: [RoleGuard], 
-      //   data: { 
+      //   path: 'employee',
+      //   component: EmployeeComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
       //     expectedRole: 'ROLE_EMPLOYEE'
-      //   } 
+      //   }
       // }
     ]),
     FormsModule,
