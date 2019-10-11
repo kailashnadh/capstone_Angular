@@ -46,6 +46,8 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
         } 
       }
       // { 
+
+      //Surendher made some changes 
       //   path: 'admin', 
       //   component: AdminComponent, 
       //   canActivate: [RoleGuard], 
