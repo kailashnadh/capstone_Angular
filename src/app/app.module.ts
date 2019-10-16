@@ -68,6 +68,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 
       }
       // { 
+        // I commited
+        
       //   path: 'admin', 
       //   component: AdminComponent, 
       //   canActivate: [RoleGuard], 
