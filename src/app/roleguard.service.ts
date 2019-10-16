@@ -16,7 +16,6 @@ export class RoleguardService implements CanActivate{
     const token = localStorage.getItem('restaurant-token');
     // decode the token to get its payload
     const tokenPayload = decode(token);
-    debugger
     if (
       !this.auth.isAuthenticated() || 
       tokenPayload.scopes!== expectedRole

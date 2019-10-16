@@ -1,2 +1,15 @@
-<p>home works!</p>
+<div class="row">
+    <div class="col-12 col-md-12" *ngIf="isAdmin()">
+        <app-adminhome></app-adminhome>
+    </div>
+    <div class="col-12 col-md-12" *ngIf="isEmployee()">
+        <app-employeehome></app-employeehome>
+    </div>
+    <div class="col-12 col-md-12" *ngIf="isManager()">
+        <app-managerhome></app-managerhome>
+    </div>
+    
+</div>
+
+<p *ngIf="isEmployee()">home works!</p>
 <p>{{role}}</p>

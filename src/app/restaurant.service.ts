@@ -3,6 +3,7 @@ import { User } from './user';
 import { Authresponse } from './authresponse';
 import { BROWSER_STORAGE } from './storage';
 import { Http, Response,Headers } from '@angular/http';
+import { Employee } from './employee';
 
 
 @Injectable({
@@ -22,6 +23,12 @@ export class RestaurantService {
       debugger
       return response.json() as Authresponse;
     }).catch(this.handleError);
+  }
+   //get(api/employees)
+   getAllEmployees(): Promise<void | Employee[]> {
+    const url: string = this.restaurantUrl + '/api/employee/all';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.get(url,{ headers: headers}).toPromise().then(response => response.json() as Employee[]).catch(this.handleError);
   }
 
   public login(user: User): Promise<void | Authresponse> {

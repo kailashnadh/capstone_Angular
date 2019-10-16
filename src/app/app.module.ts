@@ -12,8 +12,12 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleguardService as RoleGuard } from './roleguard.service';
-import { HasroleDirective } from './hasrole.directive';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { EmployeehomeComponent } from './employeehome/employeehome.component';
+import { ManagerhomeComponent } from './managerhome/managerhome.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,12 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
     LoginComponent,
     FrameworkComponent,
     HomeComponent,
-    HasroleDirective,
-    AddemployeeComponent
+    AddemployeeComponent,
+    AdminhomeComponent,
+    EmployeehomeComponent,
+    ManagerhomeComponent,
+    EmployeeListComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +46,26 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
         canActivate: [AuthGuard]
       },
       {
+        path: 'employee/:employeeId',
+        component: EmployeeDetailsComponent
+      },
+      {
         path:'AddEmployee',
         component:AddemployeeComponent,
         canActivate:[RoleGuard],
         data: { 
              expectedRole: 'ROLE_ADMIN'
-        } 
+        }
+      },
+        {
+        
+        path:'GetEmployees',
+          component:EmployeeListComponent,
+          canActivate:[RoleGuard],
+          data: { 
+               expectedRole: 'ROLE_ADMIN'
+          }
+
       }
       // { 
       //   path: 'admin', 
