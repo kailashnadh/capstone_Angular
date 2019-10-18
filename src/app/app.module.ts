@@ -18,6 +18,7 @@ import { EmployeehomeComponent } from './employeehome/employeehome.component';
 import { ManagerhomeComponent } from './managerhome/managerhome.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
   ],
   imports: [
     BrowserModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
     AppRoutingModule,
     RouterModule.forRoot([
       {

@@ -10,6 +10,7 @@ import { Employee } from './employee';
   providedIn: 'root'
 })
 export class RestaurantService {
+  
 
   private restaurantUrl = 'http://localhost:8080';
 
@@ -33,6 +34,19 @@ export class RestaurantService {
 
   public login(user: User): Promise<void | Authresponse> {
     return this.makeAuthApiCall('token/generate-token', user);
+  }
+
+  deleteEmployee(employeeid: string): Promise<void | string> {
+    var deleteurl = this.restaurantUrl + '/api/employee/' + employeeid;
+    console.log(deleteurl);
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.delete(deleteurl,{ headers: headers}).toPromise().then(response => response.json() as string).catch(this.handleError);
+  }
+
+  getSingleEmployee(employeeId: string): Promise<void | Employee> {
+    var singleUrl = this.restaurantUrl + '/api/employee/' + employeeId;
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.get(singleUrl,{ headers: headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
   }
 
   private handleError(error: any) {
