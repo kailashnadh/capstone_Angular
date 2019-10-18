@@ -12,8 +12,8 @@ export class Employee {
     }    
  
 export class roles {
-    role_id: string;
-    role_name: number;
+    role_id: number;
+    role_name: string;
     }
 export class address{
     address_id?: string;

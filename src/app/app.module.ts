@@ -19,6 +19,7 @@ import { ManagerhomeComponent } from './managerhome/managerhome.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { AdminUpdateComponent } from './admin-update/admin-update.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     EmployeehomeComponent,
     ManagerhomeComponent,
     EmployeeListComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    AdminUpdateComponent
   ],
   imports: [
     BrowserModule,

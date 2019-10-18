@@ -20,6 +20,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   employee: Employee;
   public redirect = false;
+  update = false;
 
   private getImage(bytevalue):void|any{
     let base64String =bytevalue;
@@ -31,6 +32,14 @@ export class EmployeeDetailsComponent implements OnInit {
       url="assets/image.jpg";
     }
     return url;
+  }
+
+  showUpdate(): void {
+    if(this.authenticationService.getRole()=="ROLE_ADMIN")
+    {
+      this.update = true;
+    }
+    
   }
 
   public back(): void {
