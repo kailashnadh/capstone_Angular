@@ -1,5 +1,5 @@
 export class Employee {
-        _id?: string;
+        emp_id?: string;
         firstname: string;
         lastname: string;
         gender: string;

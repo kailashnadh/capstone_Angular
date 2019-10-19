@@ -34,21 +34,8 @@ export class AdminUpdateComponent implements OnInit {
     this.formAdded='';
     console.log(this.employee); 
     if (this.formIsValid()) { 
-        console.log(this.employee); 
-        if(this.employee.roles[0].role_id==1){
-          this.employee.roles[0].role_name="ADMIN"
-        }
-        if(this.employee.roles[0].role_id==2){
-          this.employee.roles[0].role_name="MANAGER"
-        }
-        if(this.employee.roles[0].role_id==3){
-          this.employee.roles[0].role_name="USER"
-        }
-        this.restaurantService.updateAdminEmployeedetails(this.employee)
-              .then((m: Employee) => {
-                console.log("Movie Saved successfully", m);
-                this.formAdded='Role updated Successfully';
-              });
+        this.restaurantService.updateAdminEmployeeRole(this.employee.emp_id,this.employee.roles[0].role_id);
+        this.formAdded="Updated Successfully"
     } else { 
         this.formError = 'All fields required, please try again'; 
     }

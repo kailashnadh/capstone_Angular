@@ -25,6 +25,17 @@ export class RestaurantService {
       return response.json() as Authresponse;
     }).catch(this.handleError);
   }
+
+  updateAdminEmployeeRole(empid:string,roleid:number):void{
+    debugger
+    var finalurl = this.restaurantUrl + '/api/employee/setRole';
+    const myDto = { emp_id: empid, role_id: roleid, };
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    this.http.put(finalurl,myDto,{headers:headers}).toPromise()
+    .then(response => {
+      
+    }).catch(this.handleError);
+  }
    //get(api/employees)
    getAllEmployees(): Promise<void | Employee[]> {
     const url: string = this.restaurantUrl + '/api/employee/all';
@@ -42,11 +53,7 @@ export class RestaurantService {
     const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
     return this.http.delete(deleteurl,{ headers: headers}).toPromise().then(response => response.json() as string).catch(this.handleError);
   }
-  updateAdminEmployeedetails(employee:Employee):Promise<void|Employee>{
-    var finalurl = this.restaurantUrl + '/api/employee/update';
-    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
-    return this.http.put(finalurl,employee,{headers:headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
-  }
+  
   
 
   getSingleEmployee(employeeId: string): Promise<void | Employee> {
