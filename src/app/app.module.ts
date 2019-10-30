@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -20,10 +21,12 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { AdminUpdateComponent } from './admin-update/admin-update.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     LoginComponent,
     FrameworkComponent,
     HomeComponent,
@@ -33,10 +36,11 @@ import { AdminUpdateComponent } from './admin-update/admin-update.component';
     ManagerhomeComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
-    AdminUpdateComponent
+    AdminUpdateComponent,
+    ProfileComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     }),
@@ -53,7 +57,8 @@ import { AdminUpdateComponent } from './admin-update/admin-update.component';
       },
       {
         path: 'employee/:employeeId',
-        component: EmployeeDetailsComponent
+        component: EmployeeDetailsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'AddEmployee',
@@ -72,6 +77,11 @@ import { AdminUpdateComponent } from './admin-update/admin-update.component';
                expectedRole: 'ROLE_ADMIN'
           }
 
+      },
+      {
+          path:'myProfile',
+          component:ProfileComponent,
+          canActivate: [AuthGuard]
       }
       // { 
         // I commited

@@ -19,6 +19,11 @@ export class AuthenticationService {
     // true or false
     return !this.jwtHelper.isTokenExpired(token);
   }
+  public getCurrentUserEmail(): string {
+    const token = localStorage.getItem('restaurant-token');
+    const tokenPayload = decode(token);  
+    return tokenPayload.sub;
+  }
 
   getRole():string{
     const token = localStorage.getItem('restaurant-token');

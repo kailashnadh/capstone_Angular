@@ -4,6 +4,7 @@ import { Authresponse } from './authresponse';
 import { BROWSER_STORAGE } from './storage';
 import { Http, Response,Headers } from '@angular/http';
 import { Employee } from './employee';
+import { HttpParams,HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class RestaurantService {
 
   private restaurantUrl = 'http://localhost:8080';
 
-  constructor(private http: Http,@Inject(BROWSER_STORAGE) private storage: Storage) { }
+  constructor(private http: Http,private httpClient:HttpClient,@Inject(BROWSER_STORAGE) private storage: Storage) { }
 
   private makeAuthApiCall(urlPath: string, user: User): Promise<void | Authresponse> {
     const url: string = this.restaurantUrl + '/' + urlPath;
@@ -36,12 +37,32 @@ export class RestaurantService {
       
     }).catch(this.handleError);
   }
+
+  updateEmployeeProfile(emp:FormData):void{
+    var finalurl = this.restaurantUrl + '/api/employee/update';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    debugger
+    this.http.put(finalurl,emp,{headers:headers}).toPromise()
+    .then(response => {
+      
+    }).catch(this.handleError);
+  }
+
+  getEmployeebyEmail(emailid:string):Promise<void|Employee>{
+    var singleUrl = this.restaurantUrl + '/api/employee/getbyemail/'+emailid;
+    console.log(singleUrl);
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.get(singleUrl,{ headers: headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
+
+  }
    //get(api/employees)
    getAllEmployees(): Promise<void | Employee[]> {
     const url: string = this.restaurantUrl + '/api/employee/all';
     const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
     return this.http.get(url,{ headers: headers}).toPromise().then(response => response.json() as Employee[]).catch(this.handleError);
   }
+
+
 
   public login(user: User): Promise<void | Authresponse> {
     return this.makeAuthApiCall('token/generate-token', user);
