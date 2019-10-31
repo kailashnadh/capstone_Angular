@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -12,20 +13,37 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleguardService as RoleGuard } from './roleguard.service';
-import { HasroleDirective } from './hasrole.directive';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { EmployeehomeComponent } from './employeehome/employeehome.component';
+import { ManagerhomeComponent } from './managerhome/managerhome.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { AdminUpdateComponent } from './admin-update/admin-update.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     LoginComponent,
     FrameworkComponent,
     HomeComponent,
-    HasroleDirective,
-    AddemployeeComponent
+    AddemployeeComponent,
+    AdminhomeComponent,
+    EmployeehomeComponent,
+    ManagerhomeComponent,
+    EmployeeListComponent,
+    EmployeeDetailsComponent,
+    AdminUpdateComponent,
+    ProfileComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
     AppRoutingModule,
     RouterModule.forRoot([
       {
@@ -38,12 +56,18 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
         canActivate: [AuthGuard]
       },
       {
+        path: 'employee/:employeeId',
+        component: EmployeeDetailsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path:'AddEmployee',
         component:AddemployeeComponent,
         canActivate:[RoleGuard],
         data: {
              expectedRole: 'ROLE_ADMIN'
         }
+<<<<<<< HEAD
       }
       //hiiiiiiiiiiiiiiiiiiiiiiii
       // {
@@ -51,6 +75,31 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
       //   component: AdminComponent,
       //   canActivate: [RoleGuard],
       //   data: {
+=======
+      },
+        {
+        
+        path:'GetEmployees',
+          component:EmployeeListComponent,
+          canActivate:[RoleGuard],
+          data: { 
+               expectedRole: 'ROLE_ADMIN'
+          }
+
+      },
+      {
+          path:'myProfile',
+          component:ProfileComponent,
+          canActivate: [AuthGuard]
+      }
+      // { 
+        // I commited
+        
+      //   path: 'admin', 
+      //   component: AdminComponent, 
+      //   canActivate: [RoleGuard], 
+      //   data: { 
+>>>>>>> 291d640a8f969377e7f34c627c1f9b5f92d18dc3
       //     expectedRole: 'ROLE_ADMIN'
       //   }
       // },
