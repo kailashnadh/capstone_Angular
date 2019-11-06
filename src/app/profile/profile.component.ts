@@ -4,6 +4,10 @@ import { AuthenticationService } from '../authentication.service';
 import { Employee, address } from '../employee';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Empupdate } from '../empupdate';
+import {ChangePssword} from '../change-pssword';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../_helpers/must-match.validator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -12,18 +16,25 @@ import { Empupdate } from '../empupdate';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private restaurantService: RestaurantService,private authenticationService: AuthenticationService,private sanitizer: DomSanitizer) { }
+  constructor(private formBuilder: FormBuilder,private restaurantService: RestaurantService,private authenticationService: AuthenticationService,private sanitizer: DomSanitizer) { }
   employee: Employee;
+  res:string;
   update:boolean=false;
   readonly:boolean=true;
+  showPassword:boolean = false;
+  passwordForm: FormGroup;
+  submitted = false;
   public selectedFile;
   public newemp = {
     name: '',
     email: '',
     password: ''
   };
+  
   updateemp:Empupdate=new Empupdate();
-  empaddress:address=new address()
+  changePassword:ChangePssword=new ChangePssword();
+  empaddress:address=new address();
+  Swal:any=  require('sweetalert2');
   private getMyProfile():void{
 
     this.restaurantService.getEmployeebyEmail(this.authenticationService.getCurrentUserEmail()).then((employee:Employee)=>{
@@ -91,10 +102,45 @@ export class ProfileComponent implements OnInit {
       this.employee.photo=uploadData;
       this.restaurantService.updateEmployeeProfile(uploadData);
     }
+
+    onSubmit() {
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.passwordForm.invalid) {
+          return;
+      }
+
+     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.passwordForm.value.currentPassword));
+      this.changePassword.emp_id=this.employee.emp_id;
+      this.changePassword.currentPassword=this.passwordForm.value.currentPassword;
+      this.changePassword.newPassword=this.passwordForm.value.newPassword;
+     
+     this.restaurantService.changePassword(this.changePassword).then((result:string)=>{
+       (result=='true')?Swal.fire({
+        icon: 'success',
+        title: 'Yeh...Yeh',
+        text: 'Password Updated Successfully'
+      }):Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Enter Correct Password'
+      })
+     });
+    
+  }
+  get f() { return this.passwordForm.controls; }
   
 
   ngOnInit() {
     this.getMyProfile();
+    this.passwordForm = this.formBuilder.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+  }, {
+      validator: MustMatch('newPassword', 'confirmPassword')
+  });
   }
 
 }

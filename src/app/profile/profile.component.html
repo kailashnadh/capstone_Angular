@@ -86,56 +86,7 @@
                           </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-sm-6 mb-3">
-                        <div class="mb-2"><b>Change Password</b></div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Current Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>New Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                              <input class="form-control" type="password" placeholder="••••••"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                        <div class="mb-2"><b>Keeping in Touch</b></div>
-                        <div class="row">
-                          <div class="col">
-                            <label>Email Notifications</label>
-                            <div class="custom-controls-stacked px-2">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                                <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                                <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                                <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
                     <div class="row">
                       <div class="col d-flex justify-content-end">
                         <button class="btn btn-primary"  (click)="onSaveChanges()" *ngIf="update" type="submit">Save Changes</button>
@@ -155,5 +106,67 @@
     </div>
 
   </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+              <button class="btn btn-primary" (click)="showPassword= !showPassword" type="submit">Change Password</button>
+            </div>
+          </div>
+          <br>
+          <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+<div class="row" *ngIf="showPassword">
+  <div class="col-12 col-sm-6 mb-3">
+   
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input class="form-control" formControlName="currentPassword" [ngClass]="{ 'is-invalid': submitted && f.currentPassword.errors }" 
+          type="password">
+          <div *ngIf="submitted && f.currentPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.currentPassword.errors.required">Current Password is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>New Password</label>
+          <input class="form-control"  formControlName="newPassword" [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" type="password" />
+          <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.newPassword.errors.required">Password is required</div>
+              <div *ngIf="f.newPassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+          <input class="form-control" type="password" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+              <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</form>
+</div>
 </div>
 </div>

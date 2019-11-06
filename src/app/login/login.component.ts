@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginComponent implements OnInit {
 
   public formError: string = '';
+  Swal:any=  require('sweetalert2');
   public credentials = {
     username: '',
     password: ''
@@ -31,7 +33,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.credentials)
       .then(() => this.router.navigateByUrl('/home'))
       .catch((message) => {
-        this.formError = message
+        //this.formError = message
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Enter Correct Credentials'
+        })
       });
   }
 }

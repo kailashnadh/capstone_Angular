@@ -4,6 +4,7 @@ import { Authresponse } from './authresponse';
 import { BROWSER_STORAGE } from './storage';
 import { Http, Response,Headers } from '@angular/http';
 import { Employee } from './employee';
+import {ChangePssword} from './change-pssword';
 import { HttpParams,HttpClient } from '@angular/common/http';
 
 
@@ -48,6 +49,16 @@ export class RestaurantService {
     }).catch(this.handleError);
   }
 
+  changePassword(changePassword:ChangePssword):Promise<void|String>{
+    var singleUrl=this.restaurantUrl+'/api/employee/changePassword';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.put(singleUrl,changePassword,{headers:headers}).toPromise()
+    .then(response => {
+    
+      var result=response.text()
+      return result;
+    }).catch(this.handleError);
+  }
   getEmployeebyEmail(emailid:string):Promise<void|Employee>{
     var singleUrl = this.restaurantUrl + '/api/employee/getbyemail/'+emailid;
     console.log(singleUrl);
