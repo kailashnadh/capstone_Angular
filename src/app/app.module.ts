@@ -64,9 +64,18 @@ import { ProfileComponent } from './profile/profile.component';
         path:'AddEmployee',
         component:AddemployeeComponent,
         canActivate:[RoleGuard],
-        data: { 
+        data: {
              expectedRole: 'ROLE_ADMIN'
         }
+<<<<<<< HEAD
+      }
+      //hiiiiiiiiiiiiiiiiiiiiiiii
+      // {
+      //   path: 'admin',
+      //   component: AdminComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
+=======
       },
         {
         
@@ -90,24 +99,25 @@ import { ProfileComponent } from './profile/profile.component';
       //   component: AdminComponent, 
       //   canActivate: [RoleGuard], 
       //   data: { 
+>>>>>>> 291d640a8f969377e7f34c627c1f9b5f92d18dc3
       //     expectedRole: 'ROLE_ADMIN'
-      //   } 
+      //   }
       // },
       // {
-      //   path: 'manager', 
-      //   component: ManagerComponent, 
-      //   canActivate: [RoleGuard], 
-      //   data: { 
+      //   path: 'manager',
+      //   component: ManagerComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
       //     expectedRole: 'ROLE_MANAGER'
-      //   } 
+      //   }
       // },
       // {
-      //   path: 'employee', 
-      //   component: EmployeeComponent, 
-      //   canActivate: [RoleGuard], 
-      //   data: { 
+      //   path: 'employee',
+      //   component: EmployeeComponent,
+      //   canActivate: [RoleGuard],
+      //   data: {
       //     expectedRole: 'ROLE_EMPLOYEE'
-      //   } 
+      //   }
       // }
     ]),
     FormsModule,
