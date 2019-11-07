@@ -67,15 +67,6 @@ import { ProfileComponent } from './profile/profile.component';
         data: {
              expectedRole: 'ROLE_ADMIN'
         }
-<<<<<<< HEAD
-      }
-      //hiiiiiiiiiiiiiiiiiiiiiiii
-      // {
-      //   path: 'admin',
-      //   component: AdminComponent,
-      //   canActivate: [RoleGuard],
-      //   data: {
-=======
       },
         {
         
@@ -99,7 +90,6 @@ import { ProfileComponent } from './profile/profile.component';
       //   component: AdminComponent, 
       //   canActivate: [RoleGuard], 
       //   data: { 
->>>>>>> 291d640a8f969377e7f34c627c1f9b5f92d18dc3
       //     expectedRole: 'ROLE_ADMIN'
       //   }
       // },

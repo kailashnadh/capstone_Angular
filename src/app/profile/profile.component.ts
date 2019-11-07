@@ -96,7 +96,13 @@ export class ProfileComponent implements OnInit {
       this.empaddress.pincode=this.employee.address_id.pincode;
       this.empaddress.street=this.employee.address_id.street;
       this.updateemp.address_id=this.empaddress;
-      uploadData.append('myFile',this.selectedFile);
+      if(this.selectedFile==undefined){
+        uploadData.append('myFile',this.employee.photo);
+      }
+      else{
+        uploadData.append('myFile',this.selectedFile);
+      }
+      
       uploadData.append("employee",JSON.stringify(this.updateemp));
       debugger
       this.employee.photo=uploadData;
