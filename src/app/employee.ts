@@ -5,18 +5,18 @@ export class Employee {
         gender: string;
         date: string;
         email: string;
-        phonenumber:number;
+        phonenumber:string;
         photo:any;
         address_id:address;
         roles: roles[];
     }    
  
 export class roles {
-    role_id: number;
+    role_id: string;
     role_name: string;
     }
 export class address{
-    address_id?: string;
+    address_id:string;
     street: string;
     city: string;
     pincode: string;

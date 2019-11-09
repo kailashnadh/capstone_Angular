@@ -6,6 +6,7 @@ import { Http, Response,Headers } from '@angular/http';
 import { Employee } from './employee';
 import {ChangePssword} from './change-pssword';
 import { HttpParams,HttpClient } from '@angular/common/http';
+import { CreateEmployee } from './create-employee';
 
 
 @Injectable({
@@ -28,7 +29,13 @@ export class RestaurantService {
     }).catch(this.handleError);
   }
 
-  updateAdminEmployeeRole(empid:string,roleid:number):void{
+  addEmployeebyAdmin(employee:CreateEmployee):Promise<void | Employee>{
+    var finalurl = this.restaurantUrl + '/api/employee/add';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.post(finalurl,employee,{headers:headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
+  }
+
+  updateAdminEmployeeRole(empid:string,roleid:string):void{
     debugger
     var finalurl = this.restaurantUrl + '/api/employee/setRole';
     const myDto = { emp_id: empid, role_id: roleid, };

@@ -38,8 +38,9 @@ export class ProfileComponent implements OnInit {
   private getMyProfile():void{
 
     this.restaurantService.getEmployeebyEmail(this.authenticationService.getCurrentUserEmail()).then((employee:Employee)=>{
-      console.log(employee);
-      this.employee=employee
+    
+      this.employee=employee;
+      console.log(this.employee);
       }) 
     }
 
