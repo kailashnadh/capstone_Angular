@@ -5,6 +5,7 @@ import { Employee } from '../employee';
 import { RestaurantService } from '../restaurant.service';
 import { CreateEmployee } from '../create-employee';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-addemployee',
@@ -15,6 +16,7 @@ export class AddemployeeComponent implements OnInit {
   registerForm:FormGroup;
   roles = [];
   submitted = false;
+  Swal:any=  require('sweetalert2');
   public employee:CreateEmployee={
     firstname: '',
     lastname: '',
@@ -69,7 +71,16 @@ export class AddemployeeComponent implements OnInit {
     this.restaurantService.addEmployeebyAdmin(this.employee)
     .then((emp:Employee)=>{
       console.log(emp);
-      this.router.navigate(['employee',emp.emp_id]);
+      if(emp.emp_id!="0"){
+        this.router.navigate(['employee',emp.emp_id]);
+      }else{
+        this.Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Email already exists'
+        })
+      }
+      
     })
     console.log(this.employee);
    
@@ -81,7 +92,7 @@ get f() { return this.registerForm.controls; }
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required,Validators.pattern(/^\d{10}$/)]],
       email: ['', [Validators.required, Validators.email]],
       roles: ['']
     });
