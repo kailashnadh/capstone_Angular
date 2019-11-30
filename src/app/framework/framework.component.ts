@@ -54,7 +54,7 @@ export class FrameworkComponent implements OnInit {
 
   public isEmployee():void|boolean{
     if(this.isLoggedIn()){
-      if(this.authenticationService.getRole()=="ROLE_USER"){
+      if(this.authenticationService.getRole()=="ROLE_EMPLOYEE"){
         return true;
       }
       else{

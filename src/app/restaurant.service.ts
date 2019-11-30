@@ -7,6 +7,8 @@ import { Employee } from './employee';
 import {ChangePssword} from './change-pssword';
 import { HttpParams,HttpClient } from '@angular/common/http';
 import { CreateEmployee } from './create-employee';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Messages } from './messages';
 
 
 @Injectable({
@@ -33,6 +35,13 @@ export class RestaurantService {
     var finalurl = this.restaurantUrl + '/api/employee/add';
     const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
     return this.http.post(finalurl,employee,{headers:headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
+  }
+
+  addMessage(message:Messages):Promise<void>{
+    var finalurl = this.restaurantUrl + '/messages/add';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.post(finalurl,message,{headers:headers}).toPromise().then(res=>{
+    }).catch(this.handleError);
   }
 
   updateAdminEmployeeRole(empid:string,roleid:string):void{
@@ -73,14 +82,26 @@ export class RestaurantService {
     return this.http.get(singleUrl,{ headers: headers}).toPromise().then(response => response.json() as Employee).catch(this.handleError);
 
   }
+
+  getAllManagers(): Promise<void | Employee[]> {
+    const url: string = this.restaurantUrl + '/api/employee/all';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.get(url,{ headers: headers}).toPromise().then(response => response.json() as Employee[]).catch(this.handleError);
+  }
+
    //get(api/employees)
+   
    getAllEmployees(): Promise<void | Employee[]> {
     const url: string = this.restaurantUrl + '/api/employee/all';
     const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
     return this.http.get(url,{ headers: headers}).toPromise().then(response => response.json() as Employee[]).catch(this.handleError);
   }
 
-
+  getAllMessages(): Promise<void | Messages[]> {
+    const url: string = this.restaurantUrl + '/messages/all';
+    const headers = new Headers({ 'Authorization':  `Bearer ${this.storage.getItem('restaurant-token')}` });
+    return this.http.get(url,{ headers: headers}).toPromise().then(response => response.json() as Messages[]).catch(this.handleError);
+  }
 
   public login(user: User): Promise<void | Authresponse> {
     return this.makeAuthApiCall('token/generate-token', user);

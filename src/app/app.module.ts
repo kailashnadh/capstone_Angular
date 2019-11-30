@@ -14,14 +14,18 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 import { RoleguardService as RoleGuard } from './roleguard.service';
 import { AddemployeeComponent } from './addemployee/addemployee.component';
-import { AdminhomeComponent } from './adminhome/adminhome.component';
-import { EmployeehomeComponent } from './employeehome/employeehome.component';
-import { ManagerhomeComponent } from './managerhome/managerhome.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbdModalBasic} from './modal-basic';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { AdminUpdateComponent } from './admin-update/admin-update.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AppPasswordDirective } from './app-password.directive';
+import { MostRecentFirstPipe } from './most-recent-first.pipe';
+import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
 
 @NgModule({
   declarations: [
@@ -29,18 +33,20 @@ import { ProfileComponent } from './profile/profile.component';
     
     LoginComponent,
     FrameworkComponent,
+    NgbdModalBasic,
     HomeComponent,
     AddemployeeComponent,
-    AdminhomeComponent,
-    EmployeehomeComponent,
-    ManagerhomeComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
     AdminUpdateComponent,
-    ProfileComponent
+    ProfileComponent,
+    AppPasswordDirective,
+    MostRecentFirstPipe,
+    HtmlLineBreaksPipe,
+    ViewscheduleComponent
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,HttpClientModule,
+    BrowserModule,ReactiveFormsModule,NgbModule,FullCalendarModule,HttpClientModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     }),
@@ -59,6 +65,12 @@ import { ProfileComponent } from './profile/profile.component';
         path: 'employee/:employeeId',
         component: EmployeeDetailsComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'ViewSchedule',
+        component: ViewscheduleComponent,
+        canActivate: [AuthGuard]
+        
       },
       {
         path:'AddEmployee',
