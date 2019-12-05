@@ -26,6 +26,9 @@ import { MostRecentFirstPipe } from './most-recent-first.pipe';
 import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
+import { ScheduleEmployeeComponent } from './schedule-employee/schedule-employee.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
     LoginComponent,
     FrameworkComponent,
     NgbdModalBasic,
+    
     HomeComponent,
     AddemployeeComponent,
     EmployeeListComponent,
@@ -43,10 +47,12 @@ import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
     AppPasswordDirective,
     MostRecentFirstPipe,
     HtmlLineBreaksPipe,
-    ViewscheduleComponent
+    ViewscheduleComponent,
+    ScheduleEmployeeComponent
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,NgbModule,FullCalendarModule,HttpClientModule,
+    BrowserModule,ReactiveFormsModule,NgbModule,OwlDateTimeModule,
+    OwlNativeDateTimeModule,FullCalendarModule,BrowserAnimationsModule,HttpClientModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     }),
@@ -65,6 +71,16 @@ import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
         path: 'employee/:employeeId',
         component: EmployeeDetailsComponent,
         canActivate: [AuthGuard]
+      },
+      
+      {
+        
+        path: 'ScheduleEmployee',
+        component: ScheduleEmployeeComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRole: 'ROLE_MANAGER'
+     }
       },
       {
         path: 'ViewSchedule',

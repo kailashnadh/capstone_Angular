@@ -37,12 +37,23 @@
                     </div>
                     <div class="form-group">
                         <label>Select Role</label>
-                            <select formControlName="roles" id="role_name" name="role_name" class="form-control">
+                            <select formControlName="roles"  id="role_name" name="role_name" class="form-control">
                                 <option *ngFor="let order of roles; let i = index" [value]="roles[i].id">
                                     {{roles[i].name}}
                                   </option>
                             </select>
                     </div>
+                    <!-- <div class="form-group">
+                        <label>Select Manager</label>
+                        <select class="custom-select" (change)="changeCity($event)" formControlName="managerid">
+                            <option value="">Choose Manager</option>
+                            <option *ngFor="let city of City" [ngValue]="city">{{city}}</option>
+                         </select>
+                        
+                         <div class="invalid-feedback" *ngIf="isSubmitted && cityName.errors?.required">
+                            <sup>*</sup>Please enter your city name
+                         </div>
+                    </div> -->
                     <div class="form-group">
                         <button class="btn btn-primary">Register</button>
                     </div>

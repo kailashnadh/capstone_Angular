@@ -86,6 +86,11 @@ export class AddemployeeComponent implements OnInit {
    
   
 }
+
+
+getRole(){
+
+}
 get f() { return this.registerForm.controls; }
 
   ngOnInit() {
@@ -94,7 +99,8 @@ get f() { return this.registerForm.controls; }
       lastName: ['', Validators.required],
       phoneNumber: ['', [Validators.required,Validators.pattern(/^\d{10}$/)]],
       email: ['', [Validators.required, Validators.email]],
-      roles: ['']
+      roles: [''],
+      managerid:['',Validators.required]
     });
 
     of(this.getRoles()).subscribe(roles => {

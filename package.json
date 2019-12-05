@@ -11,7 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.0",
+    "@angular/animations": "^8.2.14",
+    "@angular/cdk": "^6.4.7",
     "@angular/common": "~8.2.0",
     "@angular/compiler": "~8.2.0",
     "@angular/core": "~8.2.0",
@@ -32,6 +33,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
+    "ng-pick-datetime": "^7.0.0",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.1.5",
     "tslib": "^1.10.0",
@@ -39,7 +41,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.0",
-    "@angular/cli": "~8.2.0",
+    "@angular/cli": "^8.3.20",
     "@angular/compiler-cli": "~8.2.0",
     "@angular/language-service": "~8.2.0",
     "@types/jasmine": "~3.3.8",
