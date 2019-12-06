@@ -26,11 +26,11 @@ export class EmployeeListComponent implements OnInit {
   private getEmployees(): void{
     this.restaurantService.getAllEmployees().then((employees:Employee[])=>{
       this.message=employees.length>0?'':'No Employees Found';
-      this.employee=employees.map(m=>{
+      this.employee=employees.map(m=>{    
         return m;
       })
-      
-      console.log(employees);
+      console.log(this.employee);
+     
     })
   }
   private str2ab(str) {
@@ -56,7 +56,6 @@ export class EmployeeListComponent implements OnInit {
       url="assets/image.jpg";
     }
     console.log(url);
-    debugger
     return url;
   }
 
