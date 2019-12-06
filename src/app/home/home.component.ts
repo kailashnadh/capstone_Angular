@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit{
 
   employee: Employee;
   modalReference: any;
+  p: Number = 1;
+  count: Number = 5;
   messages:Messages[];
   public modalError: string;
   public modalAdded:string;

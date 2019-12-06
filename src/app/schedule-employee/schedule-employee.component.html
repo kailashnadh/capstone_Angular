@@ -1,10 +1,9 @@
-<p>schedule-employee works!</p>
+
 
 <div class="jumbotron">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <h3>Add Employee</h3>
                
                     <div class="form-group">
                             <label class="example-input-wrapper">
@@ -13,8 +12,9 @@
                                        [owlDateTime]="dt3" [owlDateTimeTrigger]="dt3">
                                 <owl-date-time  #dt3></owl-date-time>
                             </label>
-                        
-                            <h4>Value From Picker: {{dateTime}}</h4>
+                            <br>
+                            <br>
+                            <!-- <h4>{{dateTime}}</h4> -->
                
                             <label class="example-input-wrapper">
                                 End DateTime
@@ -22,8 +22,10 @@
                                        [owlDateTime]="dt4" [owlDateTimeTrigger]="dt4">
                                 <owl-date-time  #dt4></owl-date-time>
                             </label>
+                            <br>
                         
-                            <h4>Value From Picker: {{enddateTime}}</h4>
+                            <!-- <h4>{{enddateTime}}</h4> -->
+                            <br>
 
                         <div class="autocomplete">
                             <div class="chips-input-container">
@@ -32,16 +34,17 @@
                               <span (click)="deleteSelects(user)" class="delete-icon-chip">&#10006;</span>
                             </div>
                         
-                            <input name="suggestion" type="text" placeholder="User" (click)="suggest()" [(ngModel)]="userSelectsString">
+                            <input name="suggestion" type="text" placeholder="Add Employees" (click)="suggest()" [(ngModel)]="userSelectsString">
                             </div>
-                        
+                        <br>
                             <div class="autocomplete-items" *ngIf="show">
                               <div *ngFor="let s of employee" [ngClass]="isSelected(s) ? 'selected-suggestion' : ''" (click)="selectSuggestion(s)">{{ s.firstname }} {{s.lastname}}</div>
                             </div>
                         </div>
+                        <br>
 
 
-                        <button class="btn btn-primary" (click)="onSchedule()">Register</button>
+                        <button class="btn btn-primary" (click)="onSchedule()">Schedule</button>
             </div>
         </div>
     </div>

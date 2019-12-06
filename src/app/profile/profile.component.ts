@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private restaurantService: RestaurantService,private authenticationService: AuthenticationService,private sanitizer: DomSanitizer) { }
   employee: Employee;
+  manager:Employee;
   res:string;
   update:boolean=false;
   readonly:boolean=true;
@@ -35,6 +36,8 @@ export class ProfileComponent implements OnInit {
   changePassword:ChangePssword=new ChangePssword();
   empaddress:address=new address();
   Swal:any=  require('sweetalert2');
+
+
   private getMyProfile():void{
 
     this.restaurantService.getEmployeebyEmail(this.authenticationService.getCurrentUserEmail()).then((employee:Employee)=>{
@@ -42,6 +45,13 @@ export class ProfileComponent implements OnInit {
       this.employee=employee;
       console.log(this.employee);
       }) 
+    
+    }
+    private getManager():void{
+      this.restaurantService.getMyManager(this.employee.managerid).then((employee:Employee)=>{
+        this.manager=employee;
+        console.log(this.manager)
+      })
     }
 
     public onFileChanged(event){
@@ -141,6 +151,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getMyProfile();
+   // this.getManager();
     this.passwordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],

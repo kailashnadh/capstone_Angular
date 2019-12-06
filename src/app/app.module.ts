@@ -29,6 +29,8 @@ import { ViewscheduleComponent } from './viewschedule/viewschedule.component';
 import { ScheduleEmployeeComponent } from './schedule-employee/schedule-employee.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +50,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MostRecentFirstPipe,
     HtmlLineBreaksPipe,
     ViewscheduleComponent,
-    ScheduleEmployeeComponent
+    ScheduleEmployeeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,ReactiveFormsModule,NgbModule,OwlDateTimeModule,
-    OwlNativeDateTimeModule,FullCalendarModule,BrowserAnimationsModule,HttpClientModule,
+    OwlNativeDateTimeModule,FullCalendarModule,NgxPaginationModule,BrowserAnimationsModule,HttpClientModule,
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger'
     }),
@@ -86,6 +89,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         path: 'ViewSchedule',
         component: ViewscheduleComponent,
         canActivate: [AuthGuard]
+        
+      },
+      {
+        path: 'about',
+        component: AboutComponent
         
       },
       {

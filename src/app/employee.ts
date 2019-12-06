@@ -9,6 +9,7 @@ export class Employee {
         photo:any;
         address_id:address;
         roles: roles[];
+        managerid?:string;
     }    
  
 export class roles {
