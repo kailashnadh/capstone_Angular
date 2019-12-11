@@ -19,7 +19,7 @@ import { NormalEmployees } from './normal-employees';
 export class RestaurantService {
   
 
-  private restaurantUrl = 'http://localhost:8080';
+  private restaurantUrl = 'https://restaurants-managements.herokuapp.com';
 
   constructor(private http: Http,private httpClient:HttpClient,@Inject(BROWSER_STORAGE) private storage: Storage) { }
 

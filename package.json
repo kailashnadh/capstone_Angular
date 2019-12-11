@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --target=production"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "angular-confirmation-popover": "^4.2.1",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "fullcalendar": "^3.10.1",
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
@@ -61,5 +63,9 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
   }
 }
