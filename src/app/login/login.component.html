@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 col-md-8">
-        <form (ngSubmit)="onLoginSubmit(evt)">
+        <form (ngSubmit)="onLoginSubmit()">
             <div role="alert" *ngIf="formError" class="alert alert-danger">
                 {{ formError }}
             </div>

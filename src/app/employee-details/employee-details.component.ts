@@ -22,7 +22,7 @@ export class EmployeeDetailsComponent implements OnInit {
   public redirect = false;
   update = false;
 
-  private getImage(bytevalue):void|any{
+   getImage(bytevalue):void|any{
     let base64String =bytevalue;
     var url;
     if(bytevalue){

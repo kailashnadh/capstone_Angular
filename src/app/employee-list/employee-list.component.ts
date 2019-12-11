@@ -42,7 +42,7 @@ export class EmployeeListComponent implements OnInit {
     return buf;
   }
 
-  private getImage(bytevalue):void|any{
+   getImage(bytevalue):void|any{
     
     // var bytes = bytevalue; // get from server
     // var uints = new Uint8Array([bytes]);
